@@ -70,10 +70,10 @@ pub struct BeaconChain<T: BeaconChainTypes> {
     /// Stores all operations (e.g., `Attestation`, `Deposit`, etc) that are candidates for
     /// inclusion in a block.
     pub op_pool: OperationPool<T::EthSpec>,
-    /// Stores a "snapshot" of the chain at the time the head-of-the-chain block was recieved.
+    /// Stores a "snapshot" of the chain at the time the head-of-the-chain block was received.
     canonical_head: RwLock<CheckPoint<T::EthSpec>>,
     /// The same state from `self.canonical_head`, but updated at the start of each slot with a
-    /// skip slot if no block is recieved. This is effectively a cache that avoids repeating calls
+    /// skip slot if no block is received. This is effectively a cache that avoids repeating calls
     /// to `per_slot_processing`.
     state: RwLock<BeaconState<T::EthSpec>>,
     /// The root of the genesis block.

@@ -13,7 +13,7 @@ use tokio::runtime::Builder;
 use tokio::runtime::Runtime;
 use tokio::runtime::TaskExecutor;
 use tokio_timer::clock::Clock;
-use types::{MainnetEthSpec, MinimalEthSpec};
+use types::{InteropEthSpec, MainnetEthSpec, MinimalEthSpec};
 
 pub fn run_beacon_node(
     client_config: ClientConfig,
@@ -76,6 +76,22 @@ pub fn run_beacon_node(
             log,
         ),
         ("memory", "mainnet") => run::<ClientType<MemoryStore, MainnetEthSpec>>(
+            &db_path,
+            client_config,
+            eth2_config,
+            executor,
+            runtime,
+            log,
+        ),
+        ("disk", "interop") => run::<ClientType<DiskStore, InteropEthSpec>>(
+            &db_path,
+            client_config,
+            eth2_config,
+            executor,
+            runtime,
+            log,
+        ),
+        ("memory", "interop") => run::<ClientType<MemoryStore, InteropEthSpec>>(
             &db_path,
             client_config,
             eth2_config,

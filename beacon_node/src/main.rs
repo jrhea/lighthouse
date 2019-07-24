@@ -120,6 +120,7 @@ fn main() {
                 .help("Listen port for the HTTP server.")
                 .takes_value(true),
         )
+        /* Client related arguments */
         .arg(
             Arg::with_name("db")
                 .long("db")
@@ -136,7 +137,7 @@ fn main() {
                 .short("s")
                 .help("The title of the spec constants for chain config.")
                 .takes_value(true)
-                .possible_values(&["mainnet", "minimal"])
+                .possible_values(&["mainnet", "minimal", "interop"])
                 .default_value("minimal"),
         )
         .arg(
